@@ -1,4 +1,4 @@
-package com.hzp.blog.blog.control;
+package com.hzp.blog.control;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +14,6 @@ public class Hello {
     @RequestMapping("/")
     @ResponseBody
     public String hello() {
-        return "开机了";
+        return "index.html";
     }
 }

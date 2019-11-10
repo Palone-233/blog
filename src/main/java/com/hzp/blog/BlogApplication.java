@@ -1,4 +1,4 @@
-package com.hzp.blog.blog;
+package com.hzp.blog;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hzp.blog.blog.mapper.UserMapper">
+<mapper namespace="com.hzp.blog.mapper.UserMapper">
+    <insert id="insert" parameterType="User">
+        INSERT INTO USER
+		(username,password) VALUES
+		(#{username},#{password})
 
-    <select id="findbyId" parameterType="int" resultType="com.hzp.blog.blog.model.User">
+    </insert>
+    <update id="update" parameterType="User">
+        UPDATE USER set
+        username=#{username},password=#{password}
+        where ID=#{id}
+    </update>
+    <select id="findbyId" parameterType="int" resultType="User">
        SELECT *
         FROM USER
         WHERE Id=#{c}
-</select>
-<insert id="insert" parameterType="com.hzp.blog.blog.model.User" >
-   INSERT INTO USER
-		(phone,username,password,gender,truename,birthday,email,personalBrief,avatarlmgUrl,recentlylanded) VALUES
-		(#{phone},#{username},#{password},#{gender},#{truename},#{birthday},#{email},#{personalBrief},#{avatarlmgUrl},#{recentlyLanded})
-
-</insert>
-    <select id="findall" resultType="com.hzp.blog.blog.model.User">
+    </select>
+    <select id="findbyUsername" parameterType="String" resultType="User">
+        SELECT * from USER WHERE username=#{c}
+    </select>
+    <select id="findall" resultType="com.hzp.blog.model.User">
         SELECT *
         FROM USER
     </select>
-<select id="findLastId" resultType="int">
+    <select id="findLastId" resultType="int">
    SELECT LAST_INSERT_ID()
+
 </select>
+    <delete id="deletebyId" parameterType="int">
+        delete from USER where id=#{c}
+    </delete>
+    <delete id="deleteall">
+        delete from  USER
+    </delete>
 </mapper>

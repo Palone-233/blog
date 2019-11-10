@@ -1,7 +1,7 @@
-package com.hzp.blog.blog.mapper;
+package com.hzp.blog.mapper;
 
 
-import com.hzp.blog.blog.model.User;
+import com.hzp.blog.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -15,11 +15,15 @@ import java.util.List;
 @Mapper
 @Repository
 public interface UserMapper {
-    public void insert(User user);
-    public void update(User user);
-    public void deletebyId(int id);
+    public User findbyUsername(String username);
+
+    public boolean insert(User user);
+    public boolean update(User user);
+    public boolean deletebyId(int id);
+    public boolean deleteall();
     public User findbyId(int id);
     public List<User> findall();
     public int findLastId();
+
 
 }
