@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Write</title>
+    <style type="text/css">
+        * {
+
+
+            text-align: center;
+
+        }
+
+        body {
+            background-size: 100% 100%;
+            background-attachment: fixed;
+
+        }
+    </style>
+</head>
+<body>
+<h2>随便写写东西</h2>
+<form action="/write" method="post">
+
+    标题 <input type="text" name="title"><br>
+    正文<textarea name="content"></textarea><br>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>

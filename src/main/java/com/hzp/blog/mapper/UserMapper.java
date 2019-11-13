@@ -26,4 +26,5 @@ public interface UserMapper {
     public int findLastId();
 
 
+    public User findUser(User user);
 }

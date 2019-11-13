@@ -21,6 +21,19 @@ public class UserService implements UserIService {
     UserMapper userMapper;
 
     @Override
+    public boolean update(User user) {
+
+        return userMapper.update(user);
+
+    }
+
+    @Override
+    public User findbyUser(User user) {
+        User realuser = userMapper.findUser(user);
+        return realuser;
+    }
+
+    @Override
     public List<User> findall() {
         return userMapper.findall();
     }

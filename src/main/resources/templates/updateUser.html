@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>updateUser</title>
+    <style type="text/css">
+        * {
+
+
+            text-align: center;
+
+        }
+
+        body {
+            background-size: 100% 100%;
+            background-attachment: fixed;
+
+        }
+    </style>
+</head>
+
+<body>
+<h2>请更改用户信息</h2>
+<form action="/updateUser" method="post">
+    用户名 <input name="username" th:attr="value=${session.User.username}" type="text"><br>
+    密码 <input type="password" name="newpassword"><br>
+    确认密码<input type="password" name="newpassword2"><br>
+    <input type="submit" value="提交">
+</form>
+
+</body>
+
+</html>

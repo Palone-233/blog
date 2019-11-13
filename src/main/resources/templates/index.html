@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$index$</title>
+    <style type="text/css">
+        * {
+            text-align: center;
+        }
+
+        div {
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+        }
+
+        tr {
+
+            border: 1px solid #98bf21;
+        }
+
+        th {
+            width: auto;
+        }
+
+        td {
+            font-size: 20px;
+            width: 10%;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h2>欢迎登陆<p th:text="${session.User.username}"></p></h2>
+    <button name="updateUser"><a name="toupdateUser" href="/toupdateUser">修改个人信息</a></button>
+</div>
+<div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>题目</th>
+            <th>日期</th>
+            <th>查看</th>
+            <th>修改</th>
+            <th>删除</th>
+
+        </tr>
+        </thead>
+        <tr th:each=" article:${articles}">
+            <!--/*@thymesVar id="article" type="Article"*/-->
+            <td th:text="${article.id}"></td>
+            <td th:text="${article.title}"></td>
+            <td th:text="${article.date}"></td>
+            <td><a th:href="@{'/findbyId?id='+${article.id}}">查看</a></td>
+            <td><a th:href="@{'/toupdateArticle?id='+${article.id}}">修改</a></td>
+            <td><a th:href="@{'/deleteArticle?id='+${article.id}}">删除</a></td>
+        </tr>
+
+
+    </table>
+</div>
+<div>
+    <button name="writebutton"><a name="write" href="/writeArticle">写新文章</a></button>
+
+    <button name="return"><a name="return" href="/">回到首页</a></button>
+</div>
+</body>
+</html>

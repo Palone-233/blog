@@ -20,4 +20,9 @@ public interface UserIService {
     User findbyUsername(String username);
 
     User register(String username, String password);
+
+
+  User findbyUser(User user);
+
+    boolean update(User user);
 }

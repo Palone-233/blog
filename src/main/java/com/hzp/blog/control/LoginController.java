@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 /**
  * @author hzp
  * @date 2019/11/6 15:58
@@ -20,20 +23,27 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-    @RequestMapping("/login")
-    @ResponseBody
-    public String index(@RequestParam("username") String username, @RequestParam("password") String password) {
-        System.out.println("有人要登录" + username + " +" + password);
-        User user = userService.findbyUsername(username);
-        if (user != null) {
-            System.out.println(user.getPassword());
-            if (user.getPassword().equals(password)) {
-                return "登录成功";
-            } else {
-                return "密码错误";
-            }
+    @RequestMapping("/tologin")
+    public String toLogin(HttpSession httpSession) {
+        User user = (User) httpSession.getAttribute("User");
+        if (user != null && user.getId() != 0) {
+            return "redirect:/showall";
         }
-        return "用户不存在";
+        return "login";
+    }
+
+    @RequestMapping("/login")
+
+    public String index(HttpSession httpSession, @RequestParam("username") String username, @RequestParam("password") String password) {
+        User user = new User(username, password);
+        User realuser = userService.findbyUser(user);
+        if (realuser != null) {
+            httpSession.setMaxInactiveInterval(3600);
+            httpSession.setAttribute("User", realuser);
+            return "redirect:/showall";
+        }
+        httpSession.setAttribute("User", user);
+        return "login";
     }
 
 

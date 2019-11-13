@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$Title$</title>
+    <style type="text/css">
+        h1 {
+            text-align: center;
+        }
+
+        .article {
+            width: 200px;
+            height: 200px;
+            border-width: 2px;
+            border-color: black;
+            border-style: solid;
+            float: left;
+            text-align: center;
+
+        }
+
+        .bottom {
+            clear: left;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>欢迎来到随便瞎写的博客系统</h1>
+<div class="article" th:each="article: ${articles}">
+    <p hidden th:text="${article.id}"></p>
+    <a th:href="@{'/findbyId?id='+${article.id}}" th:text="${article.title}"></a>
+    <h5 th:text="作者+${article.user_name}"></h5>
+    <p th:text="${article.content}"></p>
+    <h5 th:text=" 发表时间+${article.date}"></h5>
+</div>
+<div class="bottom">
+    <button name="login"><a href="/tologin">登陆</a></button>
+    <button name="showall"><a href="/showall">查看我的文章</a></button>
+
+</div>
+
+</body>
+</html>

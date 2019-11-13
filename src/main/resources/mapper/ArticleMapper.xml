@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzp.blog.mapper.ArticleMapper">
+    <!--    insert(Article article);-->
+    <insert id="insert" parameterType="Article">
+         INSERT INTO article
+		(user_id,user_name,title,content,date) VALUES
+		(#{user_id},#{user_name},#{title},#{content},#{date})
+    </insert>
+    <!--    findbyId(int id);-->
+    <select id="findbyId" parameterType="int" resultType="Article">
+        SELECT * FROM
+        article
+         WHERE id=#{c}
+    </select>
+    <!--    Article findbyUserId(int user_id);-->
+    <select id="findbyUserId" parameterType="int" resultType="Article">
+         SELECT *FROM
+        article
+         WHERE user_id=#{c}
+    </select>
+    <!--    deletebyId(int id);-->
+    <delete id="deletebyId" parameterType="int">
+         delete from article where id=#{c}
+    </delete>
+    <!--    deletebyUserId(int user_id);-->
+    <delete id="deletebyUserId" parameterType="int">
+        delete from article where user_id=#{c}
+    </delete>
+    <!--    deleteall()-->
+    <delete id="deleteall">
+         delete from  article
+    </delete>
+    <!--    update(Article article);-->
+    <update id="update" parameterType="Article">
+         UPDATE Article set
+        title=#{title},content=#{content},date=#{date}
+        where ID=#{id}
+    </update>
+    <select id="findall" resultType="Article">
+        select *from article
+    </select>
+</mapper>

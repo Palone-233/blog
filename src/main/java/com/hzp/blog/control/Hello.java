@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class Hello {
     @RequestMapping("/")
-    @ResponseBody
     public String hello() {
-        return "index.html";
+        return "redirect:/show";
     }
 }

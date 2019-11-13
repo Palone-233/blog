@@ -6,8 +6,17 @@
         INSERT INTO USER
 		(username,password) VALUES
 		(#{username},#{password})
-
     </insert>
+    <select id="findUser" parameterType="User" resultType="User">
+        SELECT *
+        FROM USER
+        <where>
+            <if test="id!=0">
+                ID=#{id}
+            </if>
+            AND username=#{username}and password=#{password}
+        </where>
+    </select>
     <update id="update" parameterType="User">
         UPDATE USER set
         username=#{username},password=#{password}
